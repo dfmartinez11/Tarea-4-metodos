@@ -25,29 +25,37 @@ import numpy as np
 #plt.show()
 #----------------------------------------------------------------------------------------
 datos = np.loadtxt("difusion.dat")
-Ymax=3
-Xmax=3
-Tmax=4
+Ymax=50 -1
+Xmax=50 -1
+Tmax=10
+dt=0.1
 
-estadoEnTiempo_t = datos[0 : Ymax*Xmax]
-x = estadoEnTiempo_t.transpose()
-print x
+#estadoEnTiempo_t = datos[0 : Ymax*Xmax]
+#x = estadoEnTiempo_t.transpose()
+#print x
+
 for i in range(Tmax):
+
 	#print datos[(Ymax*Xmax*i) : Ymax*Xmax*(i+1)]
 	#print " "
+
 	estadoEnTiempo_t = datos[(Ymax*Xmax*i) : Ymax*Xmax*(i+1)]
 	x = estadoEnTiempo_t.transpose()[0]
 	y = estadoEnTiempo_t.transpose()[1]
 	T = estadoEnTiempo_t.transpose()[3]
-	print T
-	print " "
+
+	#print T
+	#print " "
+
 	a = plt.figure()
 	ax1 = a.add_subplot(111,projection='3d')
 	ax1.plot_wireframe(x, y, T)
 	
+	tiempo = "Temperatura en t= "+str(i*dt)+" s"
 	plt.xlabel("POSICION X")
 	plt.ylabel("POSICION Y")
 	#---no existe zlabel----plt.zlabel("Temeperatura (K)")
+	plt.title(tiempo)
 	plt.show()
 	#x, y = np.meshgrid(x, y)
 
