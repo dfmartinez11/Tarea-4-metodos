@@ -6,8 +6,7 @@ import numpy as np
 lenn=10000
 
 plt.figure()
-#--------------------------------------------------------------
-#datos = np.loadtxt("difus.dat")
+#------------------------------------------------------------------------------------------
 posicion = np.loadtxt( "posicion.dat" )
 posicion10 = np.loadtxt( "10_posicion.dat" )
 posicion20 = np.loadtxt( "20_posicion.dat" )
@@ -65,6 +64,8 @@ plt.savefig("Velocidad_40.pdf")
 plt.legend()
 #plt.show()
 
+#----------------------------------------------------------------------------------------
+datos = np.loadtxt("difusion.dat")
 
 
 

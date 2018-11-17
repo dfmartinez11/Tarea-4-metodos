@@ -5,7 +5,7 @@ using namespace std;
 
 #define Ymax 4
 #define Xmax 4 //Esto es  50/1 = L/Dx
-#define Tmax 1
+#define Tmax 5
 
 int i, j , k;
 double Cp = 820.0 / 1000.0 ; //  J/g*K
@@ -50,17 +50,19 @@ int main()
 	
 	for(k=0 ; k<Tmax ; k++){ 
 		//cout << "  " << k*dt<< endl;
-		for(i=1 ; k<Xmax ; i++){
-			for(j=1 ; k<Ymax ; j++){
+		for(i=1 ; i<Xmax ; i++){
+
+			for(j=1 ; j<Ymax ; j++){
 				fut[i][j] = pres[i][j] + (dt*10/(dx*dx))*(-4*pres[i][j] + pres[i+1][j] + pres[i-1][j] + pres[i][j+1] + pres[i][j-1]);
-				fprintf(archivo, "%f %f %f %f", i*dx , j*dx , k*dt , pres[i][j]);
+				fprintf(archivo, "%f %f %f %f \n", i*dx , j*dx , k*dt , pres[i][j]);
 				cout <<  i*dx << " " << j*dx <<" " << k*dt <<" " << pres[i][j] << endl;
-				pres[i][j] = fut[i][j];
-				
+				pres[i][j] = fut[i][j];				
 			}
-			fprintf(archivo, "\n");	
+			
 		}
+
 		fprintf(archivo, "\n");	
+
 		/*for(i=1 ; k<Xmax ; i++){
 			for(j=1 ; k<Ymax ; j++){
 				fprintf(archivo, "%f %f %f", i*dx , j*dx , k*dt );
@@ -68,6 +70,7 @@ int main()
 			}
 		}**/		
 	}
+
 	cout << "se completo el procedimiento" << endl;
 
 /*

@@ -4,7 +4,7 @@
 using namespace std;
 #define pi 3.1416925
 #define h 0.11
-#define iter 60 //53
+#define iter 65 //53
 
 
 int i,j =0;
@@ -42,9 +42,6 @@ int main(){
 	FILE *posicion20;   
 	posicion20 = fopen("20_posicion.dat","w");
 	for (i=0; i<iter; i++){
-		for (j=1; j<iter ; j++){
-			if (y[i])
-		{		
 		fprintf(posicion20,"%f %f",x[i] ,y[i]);
 		fprintf(posicion20,"\n");
 	}
@@ -93,7 +90,8 @@ int main(){
 		fprintf(posicion70,"\n");
 	}
 	anularVectores(x, y, v, vx ,vy);
-		
+
+	cout << "--- De todos los ángulos el que maximiza la posición en X alcanzada es 40 "<< endl << endl;	
 	return 0;
 
 }
@@ -116,11 +114,8 @@ void rungekuta40(double *x, double *y, double *v, double *vx , double *vy){
 		vx[i] = vx[i-1] + h*cm*vx[i-1]/v[i-1];
 		vy[i] = vy[i-1] + h*(-g + cm*vy[i-1]/v[i-1]);
 		v[i]=pow(((vx[i]*vx[i]) + (vy[i]*vy[i])) , 0.5);
-
-		x[i] = x[i-1] + vx[i-1]*h + h*cm*x[i-1]/v[i-1];
-		y[i] = y[i-1] + vy[i-1]*h + h*(-g*pow(h*i,2)*2 + cm*y[i-1]/v[i-1]);
 	}**/
-	//y[1] = y[0] + vy[0]*h + h*(-g*pow(h,2)/2 + cm*y[0]/v[0]);
+	
 	i = 1;
 	while (y[i-1] >= 0.0){
 		vx[i] = vx[i-1] + h*cm*vx[i-1]/v[i-1];
@@ -130,17 +125,35 @@ void rungekuta40(double *x, double *y, double *v, double *vx , double *vy){
 		x[i] = x[i-1] + vx[i-1]*h + h*cm*x[i-1]/v[i-1];
 		y[i] = y[i-1] + vy[i-1]*h + h*(-g*pow(h*i,2)*2 + cm*y[i-1]/v[i-1]);
 		i = i + 1;
-		
-	
 	}
-		
+	cout <<  endl;
+	cout << "Angulo"<< ", X__maxima= " << endl;
+	cout << "  "<< "40" <<"    " <<  x[i-1] << endl;
+	
 	x[0]=0.0;
 	y[0]=0.0;
 	v[0]=300;
 	vx[0]=v[0]*cos(40*pi/180); 
 	vy[0]=vx[0]; 
 
-	for (i=0; i<iter; i++){
+
+	/*int n = 0;	
+	for (j=1; j<iter ; j++){
+		if (y[i] != 0.0){ 
+			n=n+1;
+		}
+	{
+	double xd[n], yd[n], vd[n], vxd[n], vyd[n];
+	for (j=0; j<n ; j++){
+		xd[j]=x[j];
+		yd[j]=y[j];
+		vd[j]=v[j];
+		vxd[j]=vx[j]; 
+		vyd[j]=vy[j]; 
+	{**/
+
+
+	for (i=0; i < iter ; i++){
 
 		fprintf(posicion,"%f %f",x[i] ,y[i]);
 		fprintf(posicion,"\n");
@@ -173,8 +186,9 @@ void rungekuta(double angulo, double *x, double *y, double *v, double *vx , doub
 		y[i] = y[i-1] + vy[i-1]*h + h*(-g*pow(h*i,2)*2 + cm*y[i-1]/v[i-1]);
 		i = i + 1;
 	}
-cout << "iteracion= "<< i << " ;" << angulo*180/pi  << endl;
-cout << "         ultima posic"<< y[i+1] << " ;" << angulo*180/pi  << endl;
+	//cout << "iteracion= "<< i << " ;" << angulo*180/pi  << endl;
+	//cout << "         ultima posic"<< y[i+1] << " ;" << angulo*180/pi  << endl;
+	cout << "  "<< angulo*180/pi << "    " <<  x[i-1] << endl;
 
 	x[0]=0.0;
 	y[0]=0.0;
