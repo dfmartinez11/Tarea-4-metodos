@@ -26,14 +26,14 @@ plt.plot( posicion70.transpose()[0] , posicion70.transpose()[1] , label="70" )
 
 plt.legend()
 plt.title("posicion, Y vs X para diferentes angulos")
-plt.savefig("trayectoria.pdf")
+plt.savefig("trayectoria.png")
 #plt.show()
 
 
 velocidad = np.loadtxt("velocidadXY.dat")
 Mv = np.loadtxt("MagnitudVelocidad.dat")
 
-#---Con esto garantizo que no aparezcan puntos de ceros como en velocidad y Mv
+#-Con esto garantizo que no aparezcan puntos de ceros como en velocidad y Mv
 
 n=0
 for i in range(1, velocidad.shape[0]):
@@ -60,39 +60,9 @@ plt.legend()
 plt.subplot(1,2,2)
 plt.plot( Mvv.transpose()[0],Mvv.transpose()[1] , label="|V| vs tiempo" , c="r")
 plt.title("componentes y magnitud de V con angulo=40    ")
-plt.savefig("Velocidad_40.pdf")
+plt.savefig("Velocidad_40.png")
 plt.legend()
 #plt.show()
 
 #----------------------------------------------------------------------------------------
-datos = np.loadtxt("difusion.dat")
-
-
-
-x = np.linspace(0,101,100)
-y = np.linspace(0,101,100)
-
-#ax1 = a.add_subplot(111,projection='3d')
-#ax1.plot_wireframe(x, y, z)
-#x, y = np.meshgrid(x, y)
-
-x=np.linspace(0,lenn,lenn)
-#print "len de y: ", len(datos[0:lenn])
-#print "len de x: ", len(x)
-
-#plt.plot(x,datos[ 0 : lenn ])
-#plt.plot(x,datos[ lenn : 2*lenn ])
-#plt.plot(x,datos[ 2*lenn : 3*lenn ])
-
-#   No sirvio
-#for i in range(0, 10001):
-#	for j in range(1,10001):
-#		plt.plot(x,datos[ i*10000 : j*10000 ])
-#plt.show()
-
-
-#---------------------------------------------------------------
-#for i in range(0,14):
-	#plt.plot(x, datos[(i)*lenn : (i+1)*lenn])
-#plt.show()
 
