@@ -5,7 +5,7 @@ using namespace std;
 
 #define Ymax 50
 #define Xmax 50 //Esto es  50/1 = L/Dx
-#define Tmax 10
+#define Tmax 30
 
 int i, j , k, l;
 double Cp = 820.0 / 1000.0 /273.15 ; //  J/g*C
@@ -72,7 +72,7 @@ int main()
 
 				// (dt*nu/(dx*dx)) =1
 
-				fut[i][j] = pres[i][j] + 1*(-4*pres[i][j] + pres[i+1][j] + pres[i-1][j] + pres[i][j+1] + pres[i][j-1]);
+				fut[i][j] = pres[i][j] + (nu*dt/pow(dt,2)) *(-4*pres[i][j] + pres[i+1][j] + pres[i-1][j] + pres[i][j+1] + pres[i][j-1]);
 				/*fut[23][23]=100.0;// RE - inicializo directamente 
 				fut[23][24]=100.0;
 				fut[23][25]=100.0;

@@ -2,84 +2,121 @@ from mpl_toolkits.mplot3d import axes3d
 import matplotlib.pyplot as plt
 import numpy as np
 
-
-#--------------------------------------------------------------
-#datos = np.loadtxt("difus.dat")
-#posicion = np.loadtxt("posicion.dat")
-#posicion10 = np.loadtxt("10_posicion.dat")
-#posicion20 = np.loadtxt("20_posicion.dat")
-#posicion30 = np.loadtxt("30_posicion.dat")
-#posicion50 = np.loadtxt("50_posicion.dat")
-#posicion60 = np.loadtxt("60_posicion.dat")
-#posicion70 = np.loadtxt("70_posicion.dat")
-#plt.plot(posicion.transpose()[0],posicion.transpose()[1])
-#plt.plot(posicion10.transpose()[0],posicion10.transpose()[1])
-#plt.plot(posicion20.transpose()[0],posicion20.transpose()[1])
-#plt.plot(posicion30.transpose()[0],posicion30.transpose()[1])
-#plt.plot(posicion50.transpose()[0],posicion50.transpose()[1])
-#plt.plot(posicion60.transpose()[0],posicion60.transpose()[1])
-#plt.plot(posicion70.transpose()[0],posicion70.transpose()[1])
-#plt.title("posicion, Y vs X para diferentes angulos")
-#plt.savefig("trayectoria.pdf")
-
-#plt.show()
-#----------------------------------------------------------------------------------------
 datos = np.loadtxt("difusion.dat")
 Ymax=50 
 Xmax=50 
-Tmax=10
+Tmax=30
 dt=0.1
 
-#estadoEnTiempo_t = datos[0 : Ymax*Xmax]
-#x = estadoEnTiempo_t.transpose()
-#print x
+tiempo = []
+temperaturaP = []
+graf = plt.figure()
+for k in range(Tmax):
 
-estadoEnTiempo_t = datos[0 : Ymax*Xmax]
-x = estadoEnTiempo_t.transpose()[0]
-y = estadoEnTiempo_t.transpose()[1]
+	estadoEnTiempo_t = datos[(Ymax*Xmax*k) : Ymax*Xmax*(k+1)]
+	T = estadoEnTiempo_t.transpose()[3]
+	promedio=T.mean()
+	#print promedio
+	tiempo.append(k*dt)
+	temperaturaP.append(promedio)
+
+plt.plot(tiempo, temperaturaP)
+plt.title("Temperatura promedio transversal VS tiempo")			
+plt.savefig("T_promedios.pdf")
+plt.show()
+
+
+
+#------------configuracion de equilibrio
+estadoEnTiempo_t = datos[(Ymax*Xmax*29) : Ymax*Xmax*(30)]
 T = estadoEnTiempo_t.transpose()[3]
-print x[0], " ", T[0]
-print x[-1], " ", T[-1]
-estadoEnTiempo_t = datos[(Ymax*Xmax) : Ymax*Xmax*(2)]
-x = estadoEnTiempo_t.transpose()[0]
-y = estadoEnTiempo_t.transpose()[1]
-T = estadoEnTiempo_t.transpose()[3]
-print x[0], " ", T[0]
-print x[-1], " ", T[-1]
+	
+plt.figure()	
+x=np.linspace(0,50,50)
+y=np.linspace(0,50,50)
+X, Y = np.meshgrid(x, y)
+	
+t=np.ones((50,50))
+for i in range(50):
+	t[i]=T[(50*i) : 50*(i+1)]
+
+tiempo = "Equilibrio en tiempo= "+ str(29*dt) + "s"
+plt.contourf(X, Y, t,100, cmap=plt.cm.Spectral)
+	
+plt.title(tiempo)
+cbar = plt.colorbar(plt.contourf(X, Y, t,10))
+plt.savefig("Equilibrio.pdf")
+plt.show()
 
 
 
-for i in range(Tmax):
+#-----------para varios tiempos 2D
+grafica=plt.figure()
+for i in range(Tmax-20):
 
-	#print datos[(Ymax*Xmax*i) : Ymax*Xmax*(i+1)]
-	#print " "
+	estadoEnTiempo_t = datos[(Ymax*Xmax*i) : Ymax*Xmax*(i+1)]
+	T = estadoEnTiempo_t.transpose()[3]
+	
+	ax = grafica.add_subplot(2, 5,1+i)
+		
+	x=np.linspace(0,50,50)
+	y=np.linspace(0,50,50)
+	X, Y = np.meshgrid(x, y)
+	
+	t=np.ones((50,50))
+	for i in range(50):
+		t[i]=T[(50*i) : 50*(i+1)]
+
+	tiempo = "tiempo= "+ str(i*dt) + " s"
+	ax.contourf(X, Y, t,100, cmap=plt.cm.Spectral)
+	
+	#ax.set_title(tiempo)
+	cbar = plt.colorbar(plt.contourf(X, Y, t,10))
+		
+plt.savefig("difucion2D.pdf")
+print " "
+print "------Las graficas en 2D de la temperatura estan en difucion2D.pdf"
+
+
+#------------para varios tiempos 3D
+figura = plt.figure()
+figura.suptitle('Evolucion de T con tiempo')
+for i in range(Tmax-20):
+	
 
 	estadoEnTiempo_t = datos[(Ymax*Xmax*i) : Ymax*Xmax*(i+1)]
 	x = estadoEnTiempo_t.transpose()[0]
 	y = estadoEnTiempo_t.transpose()[1]
 	T = estadoEnTiempo_t.transpose()[3]
 
-	#print x ," ", y ," ", T
-	#print " "
+	#axs[i] = figura.gca(projection='3d')
 
-	a = plt.figure()
-	ax1 = a.add_subplot(111,projection='3d')
-	ax1.plot_wireframe(x, y, T)
+	ax1 = figura.add_subplot(2, 5,1+i, projection='3d')
 	
-	tiempo = "Temperatura en t= "+str(i*dt)+" s"
-	plt.xlabel("POSICION X")
-	plt.ylabel("POSICION Y")
-	#---no existe zlabel----plt.zlabel("Temeperatura (K)")
-	plt.title(tiempo)
-	plt.show()
-	#x, y = np.meshgrid(x, y)
+	#ax1.scatter(x, y, T)
+	#ax1.plot_wireframe(x, y, T)
 
-#print "--------t=0.0"
-#print datos[0:Ymax*Xmax]
-#print " "
-#print "--------t=0.1"
-#print datos[Ymax*Xmax:Ymax*Xmax*2]
-#print " "
+	#axs[i].plot_trisurf(x, y, T, color ='w')-
+	ax1.plot_trisurf(x, y, T, color ='w',  linewidth=0.2, cmap=plt.cm.Spectral)
+
+
+	tiempo = "Temperatura en t= "+ str(i*dt) + " s"
+	ax1.set_zlabel('temper.')
+	ax1.text2D(0.05, 0.95, tiempo , transform=ax1.transAxes)
+
+plt.savefig("difucion3D.pdf")
+print "------Y las graficas en 3D ""animacion"" en difucion2D.pdf"	
+plt.show()
+
+
+
+
+
+
+
+	
+	
+
 
 
 
