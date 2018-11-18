@@ -1,23 +1,26 @@
-###### Generar la figura Aleatorios.png
-Armonico con Euler.png: graficasArmonico.py PosicionArmonicoEuler.txt
+#show: 
 
-	python graficasArmonico.py 
+	#display MagnitudVelocidad.pdf
+difucion3D.pdf: prubashw4.py difusion.dat
 
-Armonico con Euler.png: graficasArmonico.py PosicionArmonicoEuler.txt
+	python prubashw4.py
 
-	python graficasArmonico.py 
+difusion.dat: comp2 PDE.cpp
 
-####### Ejecutar a.out
-output.txt: a.out datos.cpp
+	g++ PDE.cpp -o comp2
+	./comp2
 
-	g++ datos.cpp -o a.out
-	./a.out 
+MagnitudVelocidad.pdf: Plots_hw4.py MagnitudVelocidad.dat 
 
-###### Abrir la figura
-mostrar: 
-	display Aleatorios.png
+	python Plots_hw4.py
 
-###### Borrar todos los archivos
-clean:
-	rm output.txt
-rm Aleatorios.png
+MagnitudVelocidad.dat: comp ODE.cpp
+
+	g++ ODE.cpp -o comp
+	./comp
+
+
+
+
+
+
