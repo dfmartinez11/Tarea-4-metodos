@@ -31,8 +31,6 @@ int main()
 			pres[i][j]=0.0; 
 		}
 	}
-
-
 		
 			
 	for(k=0 ; k<Tmax ; k++){ 
@@ -134,12 +132,19 @@ int main()
 				if(fut[i-1][j] > 100.0)	fut[i-1][j] = 100.0;  //condicion de equilibrio hasta 100C
 				if(fut[i-1][j] < 0.0)	fut[i-1][j] = 0.0;  //condicion de minimo de temp. en 0.0C
 
-				fprintf(archivo, "%f %f %f %f \n", i*dx , j*dx , k*dt , pres[i-1][j]);
-				//cout <<  i*dx << " " << j*dx <<" " << k*dt <<" " << pres[i][j] << endl;
-				pres[i-1][j] = fut[i-1][j];	
+				fprintf(archivo, "%f %f %f %f \n", (i-1)*dx , j*dx , k*dt , pres[i-1][j]);
+				//cout <<  (i-1)*dx << " " << j*dx <<" " << k*dt <<" " << pres[i][j] << endl;
+				pres[i-1][j] = fut[i-1][j];
+				/*  fprintf(archivo, "%f %f %f %f \n", (49)*dx , l*dx , k*dt , pres[49][j]);
+				pres[49][j] = fut[49][j];  **/	
 			}
-			
+			/* fprintf(archivo, "%f %f %f %f \n", (49)*dx , l*dx , k*dt , pres[49][i]);
+			pres[49][i] = fut[49][i]; **/
 		}
+		for(l=0; l < Xmax; l++){ 
+			fprintf(archivo, "%f %f %f %f \n", (49)*dx , l*dx , k*dt , pres[49][l]);
+			pres[49][j] = fut[49][j];  
+		}   
 			
 	}
 

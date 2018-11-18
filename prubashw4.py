@@ -25,14 +25,29 @@ import numpy as np
 #plt.show()
 #----------------------------------------------------------------------------------------
 datos = np.loadtxt("difusion.dat")
-Ymax=50 -1
-Xmax=50 -1
+Ymax=50 
+Xmax=50 
 Tmax=10
 dt=0.1
 
 #estadoEnTiempo_t = datos[0 : Ymax*Xmax]
 #x = estadoEnTiempo_t.transpose()
 #print x
+
+estadoEnTiempo_t = datos[0 : Ymax*Xmax]
+x = estadoEnTiempo_t.transpose()[0]
+y = estadoEnTiempo_t.transpose()[1]
+T = estadoEnTiempo_t.transpose()[3]
+print x[0], " ", T[0]
+print x[-1], " ", T[-1]
+estadoEnTiempo_t = datos[(Ymax*Xmax) : Ymax*Xmax*(2)]
+x = estadoEnTiempo_t.transpose()[0]
+y = estadoEnTiempo_t.transpose()[1]
+T = estadoEnTiempo_t.transpose()[3]
+print x[0], " ", T[0]
+print x[-1], " ", T[-1]
+
+
 
 for i in range(Tmax):
 
@@ -44,7 +59,7 @@ for i in range(Tmax):
 	y = estadoEnTiempo_t.transpose()[1]
 	T = estadoEnTiempo_t.transpose()[3]
 
-	#print T
+	#print x ," ", y ," ", T
 	#print " "
 
 	a = plt.figure()
@@ -59,12 +74,12 @@ for i in range(Tmax):
 	plt.show()
 	#x, y = np.meshgrid(x, y)
 
-print "--------t=0.0"
-print datos[0:Ymax*Xmax]
-print " "
-print "--------t=0.1"
-print datos[Ymax*Xmax:Ymax*Xmax*2]
-print " "
+#print "--------t=0.0"
+#print datos[0:Ymax*Xmax]
+#print " "
+#print "--------t=0.1"
+#print datos[Ymax*Xmax:Ymax*Xmax*2]
+#print " "
 
 
 
