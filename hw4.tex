@@ -7,54 +7,103 @@
 \begin{abstract}
 En este corto documento muestro las graficas del movimiento de una particula en un campo gravitacional y en un medio que genera fuerzas resitivas proporcionales al cuadrado de la velocidad. Tambien muestro las distribuciones de temperatura y su valor promedio, ambas segun una evolucion temporal para una seccion transversal de una roca con una barilla en su interior a cierta temperatura constante.
 \end{abstract}
-
 \section{Objeto en campo gravitacional de aceleracion g y medio resistivo}
-
-\begin{figure}
-	\centering
-	\includegraphics{Velocidad_40.png}
-	\caption[scale=0.01]{Caracteristicas de velocidad con agnulo = 40 grados}
-	\label{40}
-\end{figure}
-
+Luego del desarrrollo del codigo relacionado, en el caso de que la particula fuera lanzada con una inclinacion de 45 grados se obtienen unas evoluciones para la velocidad como las mostradas en la figura \ref{40} en la que se observa que la las componentes en los ejes X y Y están relacionadas bajo una función lineal con derivada positiva, cosa que resulta contraintuitiva debido a que el medio en el que la particula se mueve ejerce fuerzas en el sentido opuesto a su aceleracion. Sin embargo, hay que tener en cuenta el hecho de que el campo gravitacional produce un aumento en la componente de velocidad paralela y en el mismo sentido de la fuerza que este campo describe (luego de alcanzar el maximo de altura la velocidad en y vuelve a crecer).\\
+Por otro lado, en la figura \ref{40} como segunda subgrafica aparece la dependencia de la magnitud del avelocidad de la particula respecto al tiempo y el resultado si concuerda con la idea mencionada anteriormente sobre la reduccion de la velocidad debido a la interaccion con el medio resistivo. La funcion de relacion entre la magnitud de la velocidad y el tiempo se ajusta muy bien a una funcion lineal decreciente, de tal modo que sea posible concluir que en un medio resistivo la velocidad como un todo (sin tener en cuenta proyecciones) disminuye progresivamente.\\
 \begin{figure}
 	\centering
 	\includegraphics[scale=0.4]{trayectoria.png}
 	\caption{Movimiento con mismas velocidades pero angulos distintos}
 	\label{trayect}
 \end{figure}
-
-
+Ahora bien, si se evaluan las trayectorias seguidas por la particula para diferentes angulos de inclinacion con el que inicia la velocidad de la misma se puede encontrar la distribucion que muestro en la figura \ref{trayect}, en la que es muy notorio el efecto que tiene al resistencia del medio al movimiento de la particula; es decir, la funcion que describe la trayectoria no es una parabola simetrica sino que luego de alcanzar el maximo en altura empieza a acortarse.\\
+Como se puede notar en la figura \ref{trayect} aquel angulo que permite maximizar la distancia horizontal recorrida por la particula es el de 40 que es un valor cerca del cual está el maximo de distancia recorrida para una trayectoria parabolica en ausencia de fuerzas amortiguadoras. El comportamiento de que la parábola deje de ser cietrica y se acorte es comun a todos los angulos puesto que la existencia de la fuerza de amortiguamiento es independiente completamente de las condiciones iniciales del sistema.\\
+\begin{figure}
+	\includegraphics{Velocidad_40.png}
+	\caption[scale=0.000001]{Caracteristicas de velocidad con agnulo = 40}
+	\label{40}
+\end{figure}
 \section{Difusion de la temperatura en la seccion transversal cuadrada de una roca}
-blalablabla
-
+Dado que algunas de las graficas presenadas en esta seccion (2D, 3D para varios tiempos) no tienen buena resolucion hago la invitacion de revisarlas en los archivos principales.\\
+A continuacion muestro las graficas obtenidas para el uso de condiciones de frontera definidas en 10 grados. En la figura \ref{promedio} se observa como el promedio de la temperatura en toda la seccion transversal de la roca aumenta a medida que el tiempo avanza; es importante hacer la aclaracion sobre la manera en que la temperatura encuentra un valor constante y se estabiliza en 50 grados lo que concuerda con el hecho de que cualquier sistema termodinamico alcanza un estado de equilibrio termico en el que la temperatura resultante es un valor intermedio entre las temperaturas iniciales de os cuerpos involucrados en el sistema.\\
 \begin{figure}
 	\centering
 	\includegraphics[scale=0.35]{T_promedios.png}
 	\caption{Temperatura promedio transversal en funcion del tiempo}
 	\label{promedio}
 \end{figure}
-
-\begin{figure}
-	\centering
-	\includegraphics[scale=1]{difusion2D.png}
-	\caption{Evolucion de T vista en 2 dimensiones}
-	\label{2D}
-\end{figure}
-
+Hago la alcaracion de que las condiciones defrontera para este caso fueron puestas de tal modo que el contorno de la roca (contorno de la seccion) tenia valor inicial y constante de 10 grados, el cuadro central de la varilla 100 grados y a todos los demas puntos asigne un valor de 10 grados dado que en la tarea no se hacia especificacion alguna al respecto a la temp. del interior de la roca.\\
+Si tomamos ese momento en el que la roca alcanza el equilibrio puede obtenerse una grafica como la que aparece en la figura \ref{equil} en la que una gran porcion de la seccion transversal tiene una temperatura mucho mayor de los 10 grados  y se acerca al valor de 100 grados que mantiene una pequena parte del centro de la sección (la barilla). Sin embargo, existen partes que no alcanzan un valor de temperatura tan alto y que se mantienen en una temperatura intermedia entre los valores de 10 y 100 dados por condiciones iniciales. Es interesante observar como las zonas de alta temperatura estan separadas unas de otras por zonas muy reducidas en las que la temperatura no es la mas alta.\\ 
 \begin{figure}
 	\centering
 	\includegraphics[scale=0.4]{Equilibrio.png}
 	\caption{Vista en 2D luego de alcanzar equil. termico}
-	\label{2D}
+	\label{equil}
 \end{figure}
-
+Ahora, si se desarrolla una grafica como las que se observan en las figuras \ref{2D} y \ref{3Di} puede verse de una manera mas detallada la manera en que la temperatura  aumenta al interior de la roca; estas dos graficas dan perspectivas diferentes sobe la evolucion temporal debido a la manera de representar los valores de temperatura pero obviamente sus resultados soncuerdan entre si. En las graficas \ref{2D} y \ref{3Di} se muestran cuadros desde el tiempo cero en el que la temperatura en el espacio solo esta determinada por las condiciones iniciales. \\ 
+En ambas puede notarse como la parte central de la seccion aumenta la temperatura de una manera mas rapida que aquellos lugares en los que la temperatura al rededor tiene un valores bajos; es decir, como los puntos en el centro tienen puntos vecinos con temperaturas de frontera de 100 su evolucion sera mucho mas rapida que aquellos puntos con vecindades en temperatura de 10 grados. Entonces, el aumento de la temperatura se desarrolla de manera radial desde el centro de la seccion en el que la temperatura es mucho mayor; de todas maneras el comportamiento del aumento de la termperatura tiene angulos preferenciales debido a que yo tome la barilla como un objeto rectangula. Esto hace que los angulos de preferencia sean mutliplos de angulos rectos que sopn los que describen una trayectoria perpendicular a las superficies del cuadrado que está a 100 grados.\\
 \begin{figure}
 	\centering
-	\includegraphics[scale=1]{difusion3D.png}
-	\caption{Evolucion de T vista en 3 dimensiones}
+	\includegraphics[scale=0.6]{difusion2D.png}
+	\caption{Evolucion de T vista en 2 dimensiones}
 	\label{2D}
 \end{figure}
-
-
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.7]{difusion3D.png}
+	\caption{Evolucion de T vista en 3 dimensiones}
+	\label{3Di}
+\end{figure}\\
+\section{Evolucion de la temperatura con condiciones de frontera abiertas}
+Ahora, a continuacion muestro los mismos tipos de graficas de la seccion anterior pero usando condiciones de frontera abiertas en el sistema de la seccion transversal de la roca. En orden, aparecen la temperatura promedio, el punto de equilibrio termico, la evolucion de la seccion en unos cuantos cuadros en 2D, esa misma evolucion temporal pero en 3D. En este caso las formas no tienen color solo para que no se parezcan tanto a las graficas de condiciones de frontera cerradas.\\
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.35]{T_promediosAbiertas.png}
+	\caption{Temperatura promedio transversal en funcion del tiempo}
+	\label{promedioAbiertas}
+\end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.4]{EquilibrioAbiertas.png}
+	\caption{Vista en 2D al alcanzar equil. termico}
+	\label{equilAbiertas}
+\end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.6]{difusion2DAbiertas.png}
+	\caption{Evolucion de T con condiciones abiertas en 3D}
+	\label{2DAbiertas}
+\end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.7]{difusion3DAbiertas.png}
+	\caption{Evolucion de T con condiciones abiertas en 3D}
+	\label{3DAbiertas}
+\end{figure}\\
+\section{Evolucion con condiciones de frontera PERIODICAS}
+DE igual modoaquí aparecen los mismos tipos de graficas de la secciones anteriores pero usando condiciones de frontera periodicas. Sin embargo, el cambio que representa su uso en un sistema como el actual no es nada relevante, con los dos tipos de condiciones anteriores era muy notorio que en cada cuadro de tiempo la sección transversal se caracteriza porque cada punto en el espacio cuadrado no es unico, por el contrario tiene un equivalente en otro lugar de la seccion. Esto es equivalente a decir que para cada tiempo la distribucion de la temperatura es simetrica en el espacio respecto diferentes ejes, pueden tomarse ejes diagonales que unan las esquinas o ejes que atraviecen el centro paralelos al eje X o eje Y. Esta condicion de la difucion de calor en la seccion transversal produce que el uso de las condiciones de frontera sea innecesario. Por otro lado, y para terminar, cada punto en los extremos de la seccion tiene el mismo valor de temperatura que el punto analogo en el extremo opuesto asociado. Esto significa que los limites espaciales estan conectados como debiera suceder para las condiciones de frontera periodicas. CAbe hacer la aclaracion de que igualmente esta caracteristica esta presente en los otros tipos de condiciones de frontera.
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.35]{T_promediosPeriodicas.png}
+	\caption{Temperatura promedio transversal en funcion del tiempo}
+	\label{promedioPeriodicas}
+\end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.4]{EquilibrioPeriodicas.png}
+	\caption{Vista en 2D al alcanzar equil. termico}
+	\label{equilPeriodicas}
+\end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.6]{difusion2DPeriodicas.png}
+	\caption{Evolucion de T con condiciones abiertas en 3D}
+	\label{2DPeriodicas}
+\end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.7]{difusion3DPeriodicas.png}
+	\caption{Evolucion de T con condiciones abiertas en 3D}
+	\label{3DPeriodicas}
+\end{figure}
 \end{document}

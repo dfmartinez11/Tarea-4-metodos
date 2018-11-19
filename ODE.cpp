@@ -3,7 +3,7 @@
 #include <stdio.h>
 using namespace std;
 #define pi 3.1416925
-#define h 0.11
+#define h 0.1000
 #define iter 65 //53
 
 
